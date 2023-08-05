@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<style>
+    .button-light{                
+        background-color: white; /* Green */
+        border: 1px solid #4CAF50;
+        color: #4CAF50;
+        padding: 10px 25px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+        border-radius: 5px;
+    }
+</style>
+<section>
+    <article>
+  <h1>Update Menu Item</h1>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button class="button-light">Update</button>
+  </form>
+    </article>
+</section>
+{% endblock %}

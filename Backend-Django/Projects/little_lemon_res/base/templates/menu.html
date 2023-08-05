@@ -1,0 +1,122 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %} 
+
+<style>
+    .menu-section {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      
+    .menu-item {
+        width: 30%;
+        background-color: white;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+        overflow: hidden;
+        margin: 20px;
+        text-align: center;
+        transition: all 0.3s ease-in-out;
+    }
+
+    .menu-item:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 12px 20px rgba(0, 0, 0, 0.1);
+    }
+      
+    .menu-item img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+    }
+      
+    .menu-item p {
+        font-size: 14px;
+        color: gray;
+        margin: 10px 20px;
+    }
+    .menu-item p a {
+        font-size: medium;
+    }
+      
+    .menu-item span {
+        display: block;
+        font-size: 16px;
+        font-weight: bold;
+        margin-top: 20px;
+    }
+
+    .button-light{                
+        background-color: white; /* Green */
+        border: 1px solid #4CAF50;
+        color: #4CAF50;
+        padding: 10px 25px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+        border-radius: 5px;
+    }
+  </style>
+
+<h1>Menu</h1>
+
+
+
+    <div class="menu-section">
+        {% for item in menu %}
+            <div class="menu-item">
+            {% if item.menu_image %}
+            <img src={{item.menu_image.url}} />
+            {% endif %}
+            <p>
+                <a href="{% url 'menu_item' pk=item.pk %}">
+                    {{item.name}}
+                </a>
+            </p>
+            <p><span>${{item.price}}.00</span></p>
+            {% if user.is_staff and user.is_authenticated %}
+            <div>
+                <a href="{% url 'update_menu' pk=item.pk %}">
+                    <button class="button-light">Update</button>
+                </a>
+                <a href="{% url 'delete_menu' pk=item.pk %}">
+                    <button class="button-light">Delete</button>
+                </a>
+            </div>
+            {% endif %}
+            </div>
+        
+    
+        {% endfor %}
+    </div>
+    
+
+<div>
+    {% if user.is_staff and user.is_authenticated %}
+    <a href="{% url 'add_menu' %}">
+        <button style="background-color: #4CAF50; /* Green */
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 5px;" class="column">Add Menu
+        </button>
+    </a>
+    {% else %}
+    <div></div>
+    {% endif %}
+</div>
+
+
+{% endblock %}
+
+

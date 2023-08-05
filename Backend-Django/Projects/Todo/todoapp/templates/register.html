@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<style>
+    .form-container {
+      width: 500px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .form-header {
+        margin-top: 30px;
+        margin-bottom: 60px;
+        font-size: 24px;
+        font-weight: bold;
+    }
+
+    .form-control {
+      display: block;
+      width: 70%;
+      padding: 10px;
+      font-size: 16px;
+      margin-bottom: 20px;
+      border-radius: 5px;
+      border: 1px solid gray;
+    }
+
+    .form-submit {
+      padding: 10px 20px;
+      background-color: #45a049;
+      color: white;
+      border-radius: 5px;
+      border: none;
+      cursor: pointer;
+    }
+
+    .form-image {
+      margin-bottom: 40px;
+      align-content: center;
+    }
+  </style>
+
+
+
+<div class="card">
+    <div class="form-header">Sign Up</div>
+    {% if error %}
+      <div style="color: red;">{{ error }}</div>
+      {% endif %}
+    <!-- <img class="form-image" src="../static/img/todo.jpg" alt="Placeholder Image" width="260px" height="230px" style="border-radius: 50%;"> -->
+    <form method="post" action="">
+        {% csrf_token %}
+      <input class="form-control" type="text" name="username" placeholder="Username">
+      <input class="form-control" type="email" name="email" placeholder="Email">
+      <input class="form-control" type="password" name="password1" placeholder="Password">
+      <input class="form-control" type="password" name="password2" placeholder="Confirm Password">
+      <input class="edit-btn" type="submit" value="Sign Up">
+      <p>Already have an account? <a href="{% url 'login_view' %}">Login</a></p>
+    </form>
+  </div>
+</div>
+
+
+{% endblock %}

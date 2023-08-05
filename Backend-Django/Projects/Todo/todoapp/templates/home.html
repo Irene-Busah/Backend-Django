@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="card">
+    <h1>Welcome to DoTask App</h1>
+    <p>Feel free to register or login to create your tasks for the day.</p>
+    <div>
+        <a href="{% url 'sign_up' %}" class="edit-btn" id="signup">Sign Up</a>
+        <a href="{% url 'login_view' %}" class="edit-btn" id="login">Login</a>
+    </div>
+    
+</div>
+
+{% endblock %}
+ 
