@@ -16,27 +16,31 @@ def todo_list(request):
     user = request.user.username
     context = {'todo': todo_list, 'user': user}
     return render(request, 'list.html', context=context)
+
 def create_todo(request):
-    form = TaskForm()
-    if request.method == 'POST':
-        form = TaskForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('todos')
-    context = {'form': form}
-    return render(request, 'add_item.html', context=context)
+    user = request.user
+    title = request.POST.get("title")
+    description = request.POST.get("description")
+    # print(user, title, description)
+    if user and title:
+        todo = Task(user=user, title=title, description=description)
+        todo.save()
+        return redirect('todos')
+    return render(request, 'add_item.html')
 
 def edit_task(request, pk):
     task_item = Task.objects.get(pk=pk)
-    form = TaskForm(instance=task_item)
+    # form = TaskForm(instance=task_item)
     if request.method == 'POST':
-        form = TaskForm(request.POST, instance=task_item)
-        if form.is_valid():
-            form.save()
+        title = request.POST.get("title")
+        description = request.POST.get("description")
+    
+        if title:
+            task_item.title = title
+            task_item.description = description
+            task_item.save()
             return redirect('todos')
-    else:
-        form = TaskForm(instance=task_item)
-    return render(request, 'edit_task.html', {'form': form, 'task': task_item})
+    return render(request, 'edit_task.html', {'task': task_item})
 
 def delete_task(request, pk):
     task = Task.objects.get(pk=pk)
