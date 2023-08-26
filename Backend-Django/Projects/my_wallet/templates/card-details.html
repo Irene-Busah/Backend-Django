@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Dashboard" />
+    <meta name="author" content="Irene Busah" />
+
+    <!-- Links -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../static/css/dashboard.css" />
+
+    <title>Account Transaction | My Wallet</title>
+  </head>
+  <body>
+    <section class="header">
+      <h1>Account Transaction 💶</h1>
+      <div class="search-bar">
+        <i class="fa fa-search"></i>
+        <input type="text" name="search" placeholder="Search..." />
+      </div>
+    </section>
+    <section class="sidebar">
+      <div class="user-icon">
+        <img src="../static/img/user.svg" alt="logged in user icon" />
+      </div>
+
+      <div class="icons dashboard-icons">
+        <a href="{% url 'dashboard' %}"
+          ><img
+            src="../static/img/vector.svg"
+            alt="Dashboard icon"
+            width="25px"
+        /></a>
+        <a href="{% url 'card-details' %}"
+          ><img src="../static/img/card.svg" alt="Bank card icon"
+        /></a>
+        <a href="{% url 'category' %}"
+          ><img src="../static/img/cat.svg" alt="Category icon"
+        /></a>
+        <img src="../static/img/settings.svg" alt="Settings icon" />
+      </div>
+      <hr />
+      <div class="icons">
+        <img src="../static/img/acc1.svg" alt="user account profile icon" />
+        <img src="../static/img/net.svg" alt="netflix account icon" />
+        <img src="../static/img/aws.svg" alt="aws account icon" />
+        <img src="../static/img/aws.svg" alt="aws account icon" />
+      </div>
+
+      <div class="logout-icon">
+        <i class="fa fa-sign-out" aria-hidden="true"></i>
+      </div>
+    </section>
+    <section class="container">
+      <div class="content">
+        <div class="row">
+          <div class="balance">
+            <div class="cash-bal">
+              <p>Balance</p>
+              <h2>$2,000,000</h2>
+            </div>
+            <div class="card-detail">
+              <p>0025 1165 2346 ****</p>
+              <p>26 | 07 | 23</p>
+            </div>
+          </div>
+
+          <div class="income">
+            <div class="title">
+              <h3>Expenses</h3>
+              <i class="fa fa-ellipsis-h" aria-hidden="true"></i>
+            </div>
+            <div class="card-detail">
+              <div class="detail">
+                <h4>$65,000.14</h4>
+                <p>This month's income</p>
+              </div>
+              <p class="red-tag">-2.67%</p>
+            </div>
+            <!-- <a href="#" class="btn">Manage Payment</a> -->
+          </div>
+
+          <div class="income">
+            <div class="title text-gap">
+              <p>Current Withdrawal</p>
+              <p class="bold-text">$50,000</p>
+            </div>
+            <div class="title text-gap">
+              <p>Current Deposit</p>
+              <p class="bold-text">$10,000</p>
+            </div>
+            <div class="transaction-icons">
+              <img src="../static/img/cash-icon.svg" alt="" />
+              <img src="../static/img/transfer.svg" alt="" />
+              <img src="../static/img/deposit.svg" alt="" />
+              <img src="../static/img/add.svg" alt="" />
+            </div>
+          </div>
+
+          <div class="salary salary-card">
+            <div class="title">
+              <h3>Next Salary</h3>
+              <img src="../static/img/card-icon.svg" alt="" />
+            </div>
+            <div class="">
+              <h4>$165,000</h4>
+              <p>on 28th August 2023</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="table">
+          <div class="table-content">
+            <h3>Transaction History</h3>
+            {% for transaction in transactions %}
+            <div class="table-row">
+              <div>
+                <h4>{{transaction.transaction_type}}</h4>
+                <p class="date">{{transaction.date}}</p>
+              </div>
+              <div class="cat">
+                <p>{{transaction.purpose}}</p>
+              </div>
+              {% if transaction.transaction_type == 'Cash Deposit' %}
+              <p style="color: #378531; font-weight: 500">
+                +{{transaction.amount}}rwf
+              </p>
+              {% else %}
+              <p style="color: #9a5050; font-weight: 500">
+                -{{transaction.amount}}
+              </p>
+              {% endif %}
+              <p class="green-tag">Success</p>
+            </div>
+            {% endfor %} {% comment %}
+            <div class="table-row">
+              <div>
+                <h4>Cash Transfer</h4>
+                <p class="date">21st May 2023 at 17:32 PM</p>
+              </div>
+              <div class="cat">
+                <p>Revenue Icom</p>
+              </div>
+              <p style="color: #378531; font-weight: 500">+$1000.00</p>
+              <p class="green-tag">Success</p>
+            </div>
+
+            <div class="table-row">
+              <div>
+                <h4>Cash Deposit</h4>
+                <p class="date">21st May 2023 at 17:32 PM</p>
+              </div>
+              <div class="cat">
+                <p>Food & Drinks</p>
+              </div>
+              <p style="color: #9a5050; font-weight: 500">-$1000.00</p>
+              <p class="green-tag">Success</p>
+            </div>
+
+            <div class="table-row">
+              <div>
+                <h4>Cash Transfer</h4>
+                <p class="date">21st May 2023 at 17:32 PM</p>
+              </div>
+              <div class="cat">
+                <p>Gift&Donation</p>
+              </div>
+              <p style="color: #9a5050; font-weight: 500">-$1000.00</p>
+              <p class="green-tag">Success</p>
+            </div>
+
+            <div class="table-row">
+              <div>
+                <h4>Cash Transfer</h4>
+                <p class="date">21st May 2023 at 17:32 PM</p>
+              </div>
+              <div class="cat">
+                <p>Revenue Icom</p>
+              </div>
+              <p style="color: #378531; font-weight: 500">+$1000.00</p>
+              <p class="green-tag">Success</p>
+            </div>
+
+            <div class="table-row">
+              <div>
+                <h4>Cash Transfer</h4>
+                <p class="date">21st May 2023 at 17:32 PM</p>
+              </div>
+              <div class="cat">
+                <p>Revenue Icom</p>
+              </div>
+              <p style="color: #378531; font-weight: 500">+$1000.00</p>
+              <p class="green-tag">Success</p>
+            </div>
+
+            <div class="table-row">
+              <div>
+                <h4>Cash Transfer</h4>
+                <p class="date">21st May 2023 at 17:32 PM</p>
+              </div>
+              <div class="cat">
+                <p>Revenue Icom</p>
+              </div>
+              <p style="color: #378531; font-weight: 500">+$1000.00</p>
+              <p class="green-tag">Success</p>
+            </div>
+
+            <div class="table-row">
+              <div>
+                <h4>Cash Transfer</h4>
+                <p class="date">21st May 2023 at 17:32 PM</p>
+              </div>
+              <div class="cat">
+                <p>Gift&Donation</p>
+              </div>
+              <p style="color: #9a5050; font-weight: 500">-$1000.00</p>
+              <p class="green-tag">Success</p>
+            </div>
+
+            <div class="table-row">
+              <div>
+                <h4>Cash Transfer</h4>
+                <p class="date">21st May 2023 at 17:32 PM</p>
+              </div>
+              <div class="cat">
+                <p>Gift&Donation</p>
+              </div>
+              <p style="color: #9a5050; font-weight: 500">-$1000.00</p>
+              <p class="green-tag">Success</p>
+            </div>
+            {% endcomment %}
+          </div>
+          <div class="form">
+            <form action="{% url 'card-details' %}" method="post">
+              {% csrf_token %}
+              <h3>Add Transaction</h3>
+
+              <div class="form-row">
+                <label for="type">Type</label>
+                <select name="type" id="">
+                  <option value="Select Transaction Type" disabled selected>
+                    Select Transaction Type
+                  </option>
+                  <option value="Cash Withdrawal">Cash Withdrawal</option>
+                  <option value="Cash Transfer">Cash Transfer</option>
+                  <option value="Cash Deposit">Cash Deposit</option>
+                </select>
+              </div>
+
+              <div class="form-row">
+                <label for="purpose">Amount</label>
+                <input type="number" name="Amount" placeholder="" />
+              </div>
+
+              <div class="form-row">
+                <label for="purpose">Purpose</label>
+                <input type="text" name="purpose" placeholder="" />
+              </div>
+
+              <div class="form-row">
+                <label for="date">Date</label>
+                <input type="date" name="date" placeholder="" />
+              </div>
+              <div class="form-row">
+                <input type="submit" value="ADD TRANSACTION" />
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>

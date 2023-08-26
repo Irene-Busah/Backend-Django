@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Dashboard" />
+    <meta name="author" content="Irene Busah" />
+
+    <!-- Links -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../static/css/dashboard.css" />
+
+    <title>Dashboard | My Wallet</title>
+  </head>
+  <body>
+    <section class="header">
+      <h1>Welcome Back, <span>{{request.user.first_name}}!</span>👋</h1>
+      <div class="search-bar">
+        <i class="fa fa-search"></i>
+        <input type="text" name="search" placeholder="Search..." />
+      </div>
+    </section>
+    <section class="sidebar">
+      <div class="user-icon">
+        <img src="../static/img/user.svg" alt="logged in user icon" />
+      </div>
+
+      <div class="icons dashboard-icons">
+        <a href="{% url 'dashboard' %}"
+          ><img
+            src="../static/img/vector.svg"
+            alt="Dashboard icon"
+            width="25px"
+        /></a>
+        <a href="{% url 'card-details' %}"
+          ><img src="../static/img/card.svg" alt="Bank card icon"
+        /></a>
+        <a href="{% url 'category' %}"
+          ><img src="../static/img/cat.svg" alt="Category icon"
+        /></a>
+        <img src="../static/img/settings.svg" alt="Settings icon" />
+      </div>
+      <hr />
+      <div class="icons">
+        <img src="../static/img/acc1.svg" alt="user account profile icon" />
+        <img src="../static/img/net.svg" alt="netflix account icon" />
+        <img src="../static/img/aws.svg" alt="aws account icon" />
+        <img src="../static/img/aws.svg" alt="aws account icon" />
+      </div>
+
+      <div class="logout-icon">
+        <i class="fa fa-sign-out" aria-hidden="true"></i>
+      </div>
+    </section>
+    <section class="container">
+      <div class="content">
+        <div class="row">
+          <div class="balance">
+            <div class="cash-bal">
+              <p>Balance</p>
+              <h2>$2,000,000</h2>
+            </div>
+            <div class="card-detail">
+              <p>0025 1165 2346 ****</p>
+              <p>26 | 07 | 23</p>
+            </div>
+          </div>
+
+          <div class="income">
+            <div class="title">
+              <h3>Income</h3>
+              <i class="fa fa-ellipsis-h" aria-hidden="true"></i>
+            </div>
+            <div class="card-detail">
+              <div class="detail">
+                <h4>$60,000.14</h4>
+                <p>This month's income</p>
+              </div>
+              <p class="green-tag">+2.67%</p>
+            </div>
+          </div>
+
+          <div class="income">
+            <div class="title">
+              <h3>Expenses</h3>
+              <i class="fa fa-ellipsis-h" aria-hidden="true"></i>
+            </div>
+            <div class="card-detail">
+              <div class="detail">
+                <h4>$65,000.14</h4>
+                <p>This month's income</p>
+              </div>
+              <p class="red-tag">-2.67%</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="graph-card pie-graph">
+            <div class="cat">
+              <h3>All Expenses</h3>
+              <select name="months" id="">
+                <option value="Select Month" disabled selected>
+                  Select Month
+                </option>
+                <option value="Dec">Jan</option>
+                <option value="Dec">Feb</option>
+                <option value="Dec">Mar</option>
+                <option value="Dec">Apr</option>
+                <option value="Dec">May</option>
+                <option value="Dec">Jun</option>
+                <option value="Dec">Jul</option>
+                <option value="Dec">Aug</option>
+                <option value="Dec">Sept</option>
+                <option value="Dec">Oct</option>
+                <option value="Dec">Nov</option>
+                <option value="Dec">Dec</option>
+              </select>
+            </div>
+            <div class="pie-chart">
+              <canvas id="myPieChart"></canvas>
+            </div>
+
+            <div class="category">
+              <div class="card-detail">
+                <div class="cat">
+                  <i
+                    class="fa fa-circle"
+                    aria-hidden="true"
+                    style="color: #ff5c00"
+                  ></i>
+                  <p>Food & Drinks</p>
+                </div>
+                <div class="cat">
+                  <i
+                    class="fa fa-circle"
+                    aria-hidden="true"
+                    style="color: #1c529f"
+                  ></i>
+                  <p>Bills & Utilities</p>
+                </div>
+              </div>
+              <div class="card-detail">
+                <div class="cat">
+                  <i
+                    class="fa fa-circle"
+                    aria-hidden="true"
+                    style="color: #02a8dc"
+                  ></i>
+                  <p>Shopping</p>
+                </div>
+                <div class="cat">
+                  <i
+                    class="fa fa-circle"
+                    aria-hidden="true"
+                    style="color: #ff9900"
+                  ></i>
+                  <p>Gifts & Donations</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="graph-card line-graph">
+            <div class="cat">
+              <h3>All Expenses</h3>
+            </div>
+            <div class="line-chart">
+              <canvas id="mylineChart"></canvas>
+            </div>
+
+            <div class="card-detail">
+              {% for category in categories %}
+              <div class="cat">
+                <i
+                  class="fa fa-circle"
+                  aria-hidden="true"
+                  style="color: {{ category.color }}"
+                ></i>
+                <p>{{category.name}}</p>
+              </div>
+              {% endfor %}
+            </div>
+          </div>
+
+          <div class="cards">
+            <div class="salary">
+              <div class="title">
+                <h3>Next Salary</h3>
+                <img src="../static/img/card-icon.svg" alt="" />
+              </div>
+              <div class="">
+                <h4>$165,000</h4>
+                <p>on 28th August 2023</p>
+              </div>
+            </div>
+
+            <div class="salary">
+              <div class="title">
+                <h3>Next Salary</h3>
+                <img src="../static/img/card-icon.svg" alt="" />
+              </div>
+              <div class="">
+                <h4>$165,000</h4>
+                <p>on 28th August 2023</p>
+              </div>
+            </div>
+
+            <div class="salary">
+              <div class="title">
+                <h3>Next Salary</h3>
+                <img src="../static/img/card-icon.svg" alt="" />
+              </div>
+              <div class="">
+                <h4>$165,000</h4>
+                <p>on 28th August 2023</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="table">
+          <div class="table-content">
+            <h3>Transaction History</h3>
+            <div class="table-row">
+              <div>
+                <h4>House Rent</h4>
+                <p class="date">21st May 2023 at 17:32 PM</p>
+              </div>
+              <div class="cat">
+                <i
+                  class="fa fa-circle"
+                  aria-hidden="true"
+                  style="color: #1c529f"
+                ></i>
+                <p>Bills & Utilities</p>
+              </div>
+              <p style="color: #9a5050; font-weight: 500">-$1000.00</p>
+              <p class="green-tag">Success</p>
+            </div>
+
+            <div class="table-row">
+              <div>
+                <h4>Salary Income</h4>
+                <p class="date">21st May 2023 at 17:32 PM</p>
+              </div>
+              <div class="cat">
+                <i
+                  class="fa fa-circle"
+                  aria-hidden="true"
+                  style="color: #ff5c00"
+                ></i>
+                <p>Revenue Icom</p>
+              </div>
+              <p style="color: #378531; font-weight: 500">+$1000.00</p>
+              <p class="green-tag">Success</p>
+            </div>
+
+            <div class="table-row">
+              <div>
+                <h4>Groceries</h4>
+                <p class="date">21st May 2023 at 17:32 PM</p>
+              </div>
+              <div class="cat">
+                <i
+                  class="fa fa-circle"
+                  aria-hidden="true"
+                  style="color: #ff5c00"
+                ></i>
+                <p>Food & Drinks</p>
+              </div>
+              <p style="color: #9a5050; font-weight: 500">-$1000.00</p>
+              <p class="green-tag">Success</p>
+            </div>
+
+            <div class="table-row">
+              <div>
+                <h4>Tithe</h4>
+                <p class="date">21st May 2023 at 17:32 PM</p>
+              </div>
+              <div class="cat">
+                <i
+                  class="fa fa-circle"
+                  aria-hidden="true"
+                  style="color: #02a8dc"
+                ></i>
+                <p>Gift&Donation</p>
+              </div>
+              <p style="color: #9a5050; font-weight: 500">-$1000.00</p>
+              <p class="green-tag">Success</p>
+            </div>
+
+            <div class="table-row">
+              <div>
+                <h4>Salary Income</h4>
+                <p class="date">21st May 2023 at 17:32 PM</p>
+              </div>
+              <div class="cat">
+                <i
+                  class="fa fa-circle"
+                  aria-hidden="true"
+                  style="color: #ff5c00"
+                ></i>
+                <p>Revenue Icom</p>
+              </div>
+              <p style="color: #378531; font-weight: 500">+$1000.00</p>
+              <p class="green-tag">Success</p>
+            </div>
+
+            <div class="table-row">
+              <div>
+                <h4>Tithe</h4>
+                <p class="date">21st May 2023 at 17:32 PM</p>
+              </div>
+              <div class="cat">
+                <i
+                  class="fa fa-circle"
+                  aria-hidden="true"
+                  style="color: #02a8dc"
+                ></i>
+                <p>Gift&Donation</p>
+              </div>
+              <p style="color: #9a5050; font-weight: 500">-$1000.00</p>
+              <p class="green-tag">Success</p>
+            </div>
+
+            <div class="table-row">
+              <div>
+                <h4>Groceries</h4>
+                <p class="date">21st May 2023 at 17:32 PM</p>
+              </div>
+              <div class="cat">
+                <i
+                  class="fa fa-circle"
+                  aria-hidden="true"
+                  style="color: #ff5c00"
+                ></i>
+                <p>Food & Drinks</p>
+              </div>
+              <p style="color: #9a5050; font-weight: 500">-$1000.00</p>
+              <p class="green-tag">Success</p>
+            </div>
+
+            <div class="table-row">
+              <div>
+                <h4>Tithe</h4>
+                <p class="date">21st May 2023 at 17:32 PM</p>
+              </div>
+              <div class="cat">
+                <i
+                  class="fa fa-circle"
+                  aria-hidden="true"
+                  style="color: #02a8dc"
+                ></i>
+                <p>Gift&Donation</p>
+              </div>
+              <p style="color: #9a5050; font-weight: 500">-$1000.00</p>
+              <p class="green-tag">Success</p>
+            </div>
+
+            <div class="table-row">
+              <div>
+                <h4>House Rent</h4>
+                <p class="date">21st May 2023 at 17:32 PM</p>
+              </div>
+              <div class="cat">
+                <i
+                  class="fa fa-circle"
+                  aria-hidden="true"
+                  style="color: #1c529f"
+                ></i>
+                <p>Bills & Utilities</p>
+              </div>
+              <p style="color: #9a5050; font-weight: 500">-$1000.00</p>
+              <p class="green-tag">Success</p>
+            </div>
+          </div>
+          <div class="form">
+            <form action="">
+              <h3>Add Expenses</h3>
+              <div class="form-row">
+                <label for="purpose">Purpose</label>
+                <input type="text" name="purpose" placeholder="" />
+              </div>
+              <div class="form-row">
+                <label for="purpose">Amount</label>
+                <input type="number" name="Amount" placeholder="" />
+              </div>
+              <div class="form-row">
+                <label for="category">Category</label>
+                <select name="category" id="">
+                  <option value="Select Category" disabled selected>
+                    Select Category
+                  </option>
+                  <option value="Food & Drinks">Food & Drinks</option>
+                  <option value="Bills & Utilities">Bills & Utilities</option>
+                  <option value="Shopping">Shopping</option>
+                </select>
+              </div>
+              <div class="form-row">
+                <label for="date">Date</label>
+                <input type="date" name="date" placeholder="" />
+              </div>
+              <div class="form-row">
+                <input type="submit" value="ADD EXPENSE" />
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+      let pieChart = new Chart(document.getElementById("myPieChart"), {
+        type: "doughnut",
+        data: {
+          datasets: [
+            {
+              data: [30, 50, 20, 25], // Specify your data values here
+              backgroundColor: ["#FF5C00", "#1C529F", "#02A8DC", "#FF9900"],
+              borderWidth: 0,
+              weight: 1,
+            },
+          ],
+        },
+        options: {
+          cutoutPercentage: 60,
+          responsive: true,
+          innerRadius: "80%", // Set the inner radius here
+        },
+      });
+
+      const ctx = document.getElementById("mylineChart").getContext("2d");
+      const data = {
+        labels: [
+          "Jan",
+          "Feb",
+          "Mar",
+          "Apr",
+          "May",
+          "Jun",
+          "Jul",
+          "Aug",
+          "Sept",
+          "Oct",
+          "Nov",
+          "Dec",
+        ],
+        datasets: [
+          {
+            data: [100, 200, 150, 120, 250, 40, 0, 80, 30, 70, 80, 90],
+            borderColor: "#FF5C00",
+            borderWidth: 2,
+            pointRadius: 4,
+            pointBackgroundColor: "#FF5C00",
+            pointBorderColor: "#fff",
+            pointHoverRadius: 6,
+            pointHoverBackgroundColor: "#FF5C00",
+            pointHoverBorderColor: "#fff",
+          },
+          {
+            data: [80, 110, 90, 100, 120, 60, 50, 20, 80, 30, 90, 0],
+            borderColor: "#1C529F",
+            borderWidth: 2,
+            pointRadius: 4,
+            pointBackgroundColor: "#1C529F",
+            pointBorderColor: "#fff",
+            pointHoverRadius: 6,
+            pointHoverBackgroundColor: "#1C529F",
+            pointHoverBorderColor: "#fff",
+          },
+
+          {
+            data: [50, 60, 70, 55, 75, 50, 80, 100, 120, 40, 90, 45],
+            borderColor: "#02A8DC",
+            borderWidth: 2,
+            pointRadius: 4,
+            pointBackgroundColor: "#02A8DC",
+            pointBorderColor: "#fff",
+            pointHoverRadius: 6,
+            pointHoverBackgroundColor: "#02A8DC",
+            pointHoverBorderColor: "#fff",
+          },
+
+          {
+            data: [30, 100, 20, 55, 35, 40, 85, 90, 110, 55, 95, 70],
+            borderColor: "#FF9900",
+            borderWidth: 2,
+            pointRadius: 4,
+            pointBackgroundColor: "#FF9900",
+            pointBorderColor: "#fff",
+            pointHoverRadius: 6,
+            pointHoverBackgroundColor: "#FF9900",
+            pointHoverBorderColor: "#fff",
+          },
+        ],
+      };
+
+      // Define options for the line graph
+      const options = {
+        responsive: true,
+        maintainAspectRatio: false,
+        scales: {
+          x: {
+            display: true,
+            grid: {
+              display: false,
+            },
+          },
+          y: {
+            display: true,
+            grid: {
+              drawBorder: false,
+              borderDash: [8, 4],
+            },
+          },
+        },
+      };
+
+      // Create the line chart
+      const lineChart = new Chart(ctx, {
+        type: "line",
+        data: data,
+        options: options,
+      });
+    </script>
+  </body>
+</html>

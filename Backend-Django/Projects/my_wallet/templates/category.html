@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Dashboard" />
+    <meta name="author" content="Irene Busah" />
+
+    <!-- Links -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../static/css/dashboard.css" />
+    <title>Category | My Wallet</title>
+  </head>
+  <body>
+    <section class="header">
+      <h1>Transaction Categories</h1>
+      <div class="search-bar">
+        <i class="fa fa-search"></i>
+        <input type="text" name="search" placeholder="Search..." />
+      </div>
+    </section>
+    <section class="sidebar">
+      <div class="user-icon">
+        <img src="../static/img/user.svg" alt="logged in user icon" />
+      </div>
+
+      <div class="icons dashboard-icons">
+        <a href="{% url 'dashboard' %}"
+          ><img
+            src="../static/img/vector.svg"
+            alt="Dashboard icon"
+            width="25px"
+        /></a>
+        <a href="{% url 'card-details' %}"
+          ><img src="../static/img/card.svg" alt="Bank card icon"
+        /></a>
+        <a href="{% url 'category' %}"
+          ><img src="../static/img/cat.svg" alt="Category icon"
+        /></a>
+        <img src="../static/img/settings.svg" alt="Settings icon" />
+      </div>
+      <hr />
+      <div class="icons">
+        <img src="../static/img/acc1.svg" alt="user account profile icon" />
+        <img src="../static/img/net.svg" alt="netflix account icon" />
+        <img src="../static/img/aws.svg" alt="aws account icon" />
+        <img src="../static/img/aws.svg" alt="aws account icon" />
+      </div>
+
+      <div class="logout-icon">
+        <i class="fa fa-sign-out" aria-hidden="true"></i>
+      </div>
+    </section>
+
+    <section class="container">
+      <div class="content">
+        <div class="row">
+          <div class="balance">
+            <div class="cash-bal">
+              <p>Balance</p>
+              <h2>$2,000,000</h2>
+            </div>
+            <div class="card-detail">
+              <p>0025 1165 2346 ****</p>
+              <p>26 | 07 | 23</p>
+            </div>
+          </div>
+
+          <div class="salary">
+            <div class="title">
+              <h3>Total Expenses</h3>
+              <img src="../static/img/card-icon.svg" alt="" />
+            </div>
+
+            <div class="detail">
+              <h4>$60,000.14</h4>
+              <p>This month's income</p>
+            </div>
+          </div>
+
+          <div class="salary">
+            <div class="title">
+              <h3>Expenses</h3>
+              <img src="../static/img/card-icon.svg" alt="" />
+            </div>
+
+            <div class="detail">
+              <h4>$65,000.14</h4>
+              <p>This month's income</p>
+            </div>
+          </div>
+
+          <!-- <div class="salary">
+            <div class="title">
+              <h3>Expenses</h3>
+              <img src="./img/card-icon.svg" alt="" />
+            </div>
+
+            <div class="">
+              <h4>$65,000.14</h4>
+              <p>This month's income</p>
+            </div>
+          </div> -->
+        </div>
+        <div class="table">
+          <div class="table-content">
+            <div class="cat">
+              <h3>Bills & Utilities</h3>
+              <select name="months" id="">
+                <option value="Select Month" disabled>Select Category</option>
+                <option value="Dec">Shopping</option>
+                <option value="Dec">Food & Drinks</option>
+                <option value="Dec" selected>Bills & Utilities</option>
+                <option value="Dec">Subscriptions</option>
+                <option value="Dec">Transportation</option>
+              </select>
+            </div>
+            <div class="table-row">
+              <div>
+                <h4>Bills & Utilities</h4>
+              </div>
+              <p class="date">21st May 2023 at 17:32 PM</p>
+              <p style="color: #9a5050; font-weight: 500">-$1000.00</p>
+              <p class="green-tag">Success</p>
+            </div>
+
+            <div class="table-row">
+              <div>
+                <h4>Bills & Utilities</h4>
+              </div>
+
+              <p class="date">21st May 2023 at 17:32 PM</p>
+
+              <p style="color: #9a5050; font-weight: 500">+$1000.00</p>
+              <p class="green-tag">Success</p>
+            </div>
+
+            <div class="table-row">
+              <div>
+                <h4>Bills & Utilities</h4>
+              </div>
+
+              <p class="date">21st May 2023 at 17:32 PM</p>
+
+              <p style="color: #9a5050; font-weight: 500">-$1000.00</p>
+              <p class="green-tag">Success</p>
+            </div>
+
+            <div class="table-row">
+              <div>
+                <h4>Bills & Utilities</h4>
+              </div>
+
+              <p class="date">21st May 2023 at 17:32 PM</p>
+
+              <p style="color: #9a5050; font-weight: 500">-$1000.00</p>
+              <p class="green-tag">Success</p>
+            </div>
+
+            <div class="table-row">
+              <div>
+                <h4>Bills & Utilities</h4>
+              </div>
+
+              <p class="date">21st May 2023 at 17:32 PM</p>
+
+              <p style="color: #9a5050; font-weight: 500">-$1000.00</p>
+              <p class="green-tag">Success</p>
+            </div>
+
+            <div class="table-row">
+              <div>
+                <h4>Bills & Utilities</h4>
+              </div>
+
+              <p class="date">21st May 2023 at 17:32 PM</p>
+
+              <p style="color: #9a5050; font-weight: 500">-$1000.00</p>
+              <p class="green-tag">Success</p>
+            </div>
+
+            <div class="table-row">
+              <div>
+                <h4>Bills & Utilities</h4>
+              </div>
+
+              <p class="date">21st May 2023 at 17:32 PM</p>
+
+              <p style="color: #9a5050; font-weight: 500">-$1000.00</p>
+              <p class="green-tag">Success</p>
+            </div>
+
+            <div class="table-row">
+              <div>
+                <h4>Bills & Utilities</h4>
+              </div>
+
+              <p class="date">21st May 2023 at 17:32 PM</p>
+
+              <p style="color: #9a5050; font-weight: 500">-$1000.00</p>
+              <p class="green-tag">Success</p>
+            </div>
+
+            <div class="table-row">
+              <div>
+                <h4>Bills & Utilities</h4>
+              </div>
+
+              <p class="date">21st May 2023 at 17:32 PM</p>
+
+              <p style="color: #9a5050; font-weight: 500">-$1000.00</p>
+              <p class="green-tag">Success</p>
+            </div>
+
+            <div class="table-row">
+              <div>
+                <h4>Bills & Utilities</h4>
+              </div>
+
+              <p class="date">21st May 2023 at 17:32 PM</p>
+
+              <p style="color: #9a5050; font-weight: 500">-$1000.00</p>
+              <p class="green-tag">Success</p>
+            </div>
+          </div>
+
+          <div class="form">
+            <form action="">
+              <h3>Add Category Expenses</h3>
+              <div class="form-row">
+                <label for="purpose">Purpose</label>
+                <input type="text" name="purpose" placeholder="" />
+              </div>
+              <div class="form-row">
+                <label for="purpose">Amount</label>
+                <input type="number" name="Amount" placeholder="" />
+              </div>
+              <div class="form-row">
+                <label for="category">Category</label>
+                <select name="category" id="">
+                  <option value="Select Category" disabled selected>
+                    Select Category
+                  </option>
+                  <option value="Food & Drinks">Food & Drinks</option>
+                  <option value="Bills & Utilities">Bills & Utilities</option>
+                  <option value="Shopping">Shopping</option>
+                </select>
+              </div>
+              <div class="form-row">
+                <label for="date">Date</label>
+                <input type="date" name="date" placeholder="" />
+              </div>
+              <div class="form-row">
+                <input type="submit" value="ADD EXPENSE" />
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>

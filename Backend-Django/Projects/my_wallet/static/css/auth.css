@@ -1,0 +1,135 @@
+* {
+  box-sizing: border-box;
+  padding: 0;
+  /* margin: 0; */
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  font-size: 16px;
+  margin: 0;
+  /* overflow-y: hidden; */
+}
+
+h1 {
+  font-weight: 800;
+  text-align: center;
+}
+
+p {
+  color: #827e7e;
+}
+
+a {
+  text-decoration: none;
+}
+
+.row {
+  display: flex;
+  gap: 1rem;
+  justify-content: space-between;
+  align-items: center;
+}
+.col {
+  height: 100vh;
+  width: 100vw;
+}
+
+.row .bg-img {
+  background-color: #ece9e9;
+  position: relative;
+}
+
+.bg-img img {
+  width: 80%;
+  position: absolute;
+  top: 80px;
+}
+
+.content {
+  width: 90%;
+  margin: auto;
+  padding: 3rem;
+}
+
+.content p {
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+form {
+  display: block;
+  margin-top: 1rem;
+}
+
+label {
+  display: block;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: #666666;
+  line-height: 2;
+}
+
+.form-row,
+.form-group {
+  position: relative;
+  margin-bottom: 10px;
+}
+
+.error {
+  color: red;
+}
+
+.name-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  /* width: 100%; */
+}
+
+.form-group {
+  width: 50%;
+}
+
+i {
+  position: absolute;
+  top: 50px;
+  left: 20px;
+  transform: translateY(-50%);
+  color: #bdbcbc;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="file"] {
+  width: 100%;
+  padding: 12px 0 12px 50px;
+  outline: none;
+  border: none;
+  border-radius: 5px;
+  background-color: #f6f7f9;
+}
+
+input[type="submit"] {
+  padding: 12px;
+  width: 100%;
+  margin-top: 15px;
+  border: none;
+  background-color: #0066ff;
+  border-radius: 5px;
+  color: #fff;
+  text-align: center;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 764px) {
+  .bg-img {
+    display: none;
+  }
+
+  .col {
+    min-width: 590px;
+  }
+}

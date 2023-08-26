@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Sign up form for the application" />
+    <meta name="author" content="Irene Busah" />
+
+    <!-- Links -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../static/css/auth.css" />
+    <title>MyWallet | Sign Up</title>
+  </head>
+  <body>
+    <section class="form-section">
+      <div class="row">
+        <div class="col bg-img">
+          <img src="../static/img/register-img.png" alt="" />
+        </div>
+
+        <div class="col">
+          <div class="content">
+            <h1>Welcome! 👋</h1>
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam
+              pariatur, consequuntur aliquam hic sint similique expedita fugit!
+            </p>
+            <form action="{% url 'register' %}" method="post">
+              {% csrf_token %}
+              <div class="form-row">
+                <label for="username">Username</label>
+                <i class="fa fa-user"></i>
+                <input type="text" name="username" placeholder="" />
+              </div>
+              <div class="form-row name-section">
+                <div class="form-group">
+                  <label for="fname">First name</label>
+                  <i class="fa fa-user-o"></i>
+                  <input type="text" name="fname" />
+                </div>
+
+                <div class="form-group">
+                  <label for="lname">Last name</label>
+                  <i class="fa fa-user-o"></i>
+                  <input type="text" name="lname" />
+                </div>
+              </div>
+
+              <div class="form-row">
+                <label for="email">Email</label>
+                <i class="fa fa-envelope-o"></i>
+                <input type="email" name="email" />
+              </div>
+
+              <div class="form-row name-section">
+                <div class="form-group">
+                  <label for="password">Password</label>
+                  <i class="fa fa-lock"></i>
+                  <input type="password" name="password" />
+                </div>
+
+                <div class="form-group">
+                  <label for="cpassword">Confirm Password</label>
+                  <i class="fa fa-lock"></i>
+                  <input type="password" name="cpassword" />
+                </div>
+              </div>
+              <div class="form-row">
+                <label for="cpassword">Profile Picture</label>
+                <!-- <i class="fa fa-lock"></i> -->
+                <input type="file" name="image" />
+              </div>
+              <div class="form-row">
+                <input type="submit" value="Register" />
+              </div>
+              <p>
+                Already have an account?
+                <a href="{% url 'login' %}">Login Now</a>
+              </p>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>
