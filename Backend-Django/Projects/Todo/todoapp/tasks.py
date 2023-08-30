@@ -17,7 +17,7 @@ def send_task_reminders():
             send_mail(
                 'Task Reminder',
                 f'Reminder: Your task "{task.title}" is overdue!',
-                'your_email@example.com',  # Sender's email address
+                'busahirene123@gmail.com',  # Sender's email address
                 [user_email],  # Recipient's email address
                 fail_silently=False,
             )

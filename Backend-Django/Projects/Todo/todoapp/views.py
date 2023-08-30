@@ -43,9 +43,10 @@ def create_todo(request):
     user = request.user
     title = request.POST.get("title")
     description = request.POST.get("description")
+    date = request.POST.get("date")
     # print(user, title, description)
     if user and title:
-        todo = Task(user=user, title=title, description=description)
+        todo = Task(user=user, title=title, completion_time=date, description=description)
         todo.save()
         return redirect('todos')
     return render(request, 'add_item.html')
