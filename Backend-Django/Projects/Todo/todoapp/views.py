@@ -4,7 +4,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from .models import Task
 from .forms import TaskForm
-from .tasks import send_task_reminders
+from .tasks import send_task_reminders, send_task_notification
 
 
 # Create your views here.
@@ -24,30 +24,41 @@ def create_todo(request):
     title = request.POST.get("title")
     description = request.POST.get("description")
     date = request.POST.get("date")
-    # print(user, title, description)
+    
     if user and title:
         todo = Task(user=user, title=title, completion_time=date, description=description)
         todo.save()
+        subject = f'Task Created: {todo.title}'
+        message = f'You have created a new task:\n\nTitle: {todo.title}\n\nCompletion Date: {todo.completion_time}\n\n\nAll the Best to accomplish your goals!'
+        send_task_notification.delay(todo.id, subject, message)
         return redirect('todos')
     return render(request, 'add_item.html')
 
 def edit_task(request, pk):
     task_item = Task.objects.get(pk=pk)
-    # form = TaskForm(instance=task_item)
     if request.method == 'POST':
         title = request.POST.get("title")
+        date = request.POST.get("date")
         description = request.POST.get("description")
-    
+        
         if title:
             task_item.title = title
+            task_item.completion_time = date
             task_item.description = description
             task_item.save()
+            subject = f'Task Edited: {task_item.title}'
+            message = f'You have edited the task:\n\nTitle: {task_item.title}\n\nCompletion Date: {task_item.completion_time}\n\n\nAll the Best to accomplish your goals!'
+            send_task_notification.delay(task_item.id, subject, message)
             return redirect('todos')
     return render(request, 'edit_task.html', {'task': task_item})
 
 def delete_task(request, pk):
     task = Task.objects.get(pk=pk)
+    subject = f'Task Deleted: {task.title}'
+    message = f'You have deleted the task:\n\nTitle: {task.title}\n\n\nGo ahead and add more tasks!'
+    send_task_notification.delay(pk, subject, message)
     task.delete()
+    
     return redirect('todos')
 
 def mark_task_complete(request, pk):

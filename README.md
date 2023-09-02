@@ -8,8 +8,8 @@ This project was inspired by a tutorial I was following to bring together every 
 ## 2. Little Lemon Restaurant Web Application
 This is a restaurant application to enable their clients view their menus and book a space in the restaurant. Users can sign up or login to their account to make bookings for the restaurant to reserve their seats. It is not complete yet!! Some features like authentication needs to be configured well set right permissions to users, which I am still working to complete it.
 
-## 3. Todo Application
-This is a simple todo application which can used to schedule all your activities within a period of time. A needs to create an account and logged to their space to be able to add tasks their tasks on their space. When a task is completed, you can make it complete, of which you can mark incomplete when you realize it isn't complete yet. You can edit the tasks you have added and delete tasks. I will be adding an advance feature where users can set complete date/time so that the application will send a notification to your email when it is time.
+## 3. Django To-Do Application
+This is a simple todo application which can used to schedule all your activities within a period of time. Users needs to create an account or login to their space to be able to add tasks on their space. When a task is completed, you can mark it complete, of which you can mark incomplete when you realize it isn't complete yet. You can edit the tasks you have added and delete tasks. The application sends an email notification to the user once a task is added, edited or overdued.
 
 ## 4. Personal Expense Tracker(MyWallet)
 This application aims to assist users track their expenses. Users should be able add their expenses & transactions(withdraw, deposit & transfer). The transaction and expenses added help the application calculate their total expenses and balance in their account. The application will also display a graph of their expenses and the category in which their expenses are. The frontend of the application is complete. Still working on the backend!!
