@@ -65,11 +65,11 @@
           <div class="balance">
             <div class="cash-bal">
               <p>Balance</p>
-              <h2>$2,000,000</h2>
+              <h2>{{total_balance}} rwf</h2>
             </div>
             <div class="card-detail">
               <p>0025 1165 2346 ****</p>
-              <p>26 | 07 | 23</p>
+              <p>{{ current_date|date:"d | m | y" }}</p>
             </div>
           </div>
 
@@ -80,8 +80,8 @@
             </div>
             <div class="card-detail">
               <div class="detail">
-                <h4>$65,000.14</h4>
-                <p>This month's income</p>
+                <h4>{{total_expenses}} rwf</h4>
+                <p>This month's Expenses</p>
               </div>
               <p class="red-tag">-2.67%</p>
             </div>
@@ -129,7 +129,7 @@
               <div class="cat">
                 <p>{{transaction.purpose}}</p>
               </div>
-              {% if transaction.transaction_type == 'Cash Deposit' %}
+              {% if transaction.transaction_type == 'deposit' %}
               <p style="color: #378531; font-weight: 500">
                 +{{transaction.amount}}rwf
               </p>

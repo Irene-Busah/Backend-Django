@@ -21,7 +21,7 @@
   </head>
   <body>
     <section class="header">
-      <h1>Welcome Back, <span>{{request.user.first_name}}!</span>👋</h1>
+      <h1>Welcome Back, <span>{{request.user}}!</span>👋</h1>
       <div class="search-bar">
         <i class="fa fa-search"></i>
         <input type="text" name="search" placeholder="Search..." />
@@ -65,11 +65,11 @@
           <div class="balance">
             <div class="cash-bal">
               <p>Balance</p>
-              <h2>$2,000,000</h2>
+              <h2>{{total_balance}} rwf</h2>
             </div>
             <div class="card-detail">
               <p>0025 1165 2346 ****</p>
-              <p>26 | 07 | 23</p>
+              <p>{{ current_date|date:"d | m | y" }}</p>
             </div>
           </div>
 
@@ -80,7 +80,7 @@
             </div>
             <div class="card-detail">
               <div class="detail">
-                <h4>$60,000.14</h4>
+                <h4>{{total_income}} rwf</h4>
                 <p>This month's income</p>
               </div>
               <p class="green-tag">+2.67%</p>
@@ -94,8 +94,8 @@
             </div>
             <div class="card-detail">
               <div class="detail">
-                <h4>$65,000.14</h4>
-                <p>This month's income</p>
+                <h4>{{total_expenses}} rwf</h4>
+                <p>This month's expenses</p>
               </div>
               <p class="red-tag">-2.67%</p>
             </div>
@@ -383,7 +383,8 @@
             </div>
           </div>
           <div class="form">
-            <form action="">
+            <form action="{% url 'dashboard' %}" method="POST">
+              {% csrf_token %}
               <h3>Add Expenses</h3>
               <div class="form-row">
                 <label for="purpose">Purpose</label>
@@ -399,9 +400,11 @@
                   <option value="Select Category" disabled selected>
                     Select Category
                   </option>
-                  <option value="Food & Drinks">Food & Drinks</option>
-                  <option value="Bills & Utilities">Bills & Utilities</option>
-                  <option value="Shopping">Shopping</option>
+                  {% for category in categories%}
+                  <option value="{{category.name}}">{{category.name}}</option>
+                  {% comment %} <option value="Bills & Utilities">Bills & Utilities</option>
+                  <option value="Shopping">Shopping</option> {% endcomment %}
+                  {%endfor%}
                 </select>
               </div>
               <div class="form-row">

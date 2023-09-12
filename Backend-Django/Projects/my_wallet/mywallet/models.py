@@ -30,10 +30,10 @@ class Transaction(models.Model):
     purpose = models.CharField(max_length=200)
     amount = models.DecimalField(max_digits=10, decimal_places=2)
     # category = models.ForeignKey(Category, on_delete=models.CASCADE, blank=True, null=True)
-    date = models.DateField()
+    date = models.DateField(auto_now_add=True)
 
     def __str__(self):
-        return f"{self.user.user.first_name} - {self.amount}"
+        return f"{self.transaction_type} - {self.amount}"
 
 class Expense(models.Model):
     user = models.ForeignKey(Account, on_delete=models.CASCADE)
@@ -43,7 +43,7 @@ class Expense(models.Model):
     date = models.DateField()
 
     def __str__(self):
-        return f"{self.purpose} - {self.amount}"
+        return f"{self.category} - {self.amount}"
     
 
 # https://www.youtube.com/watch?v=IC9mrBSe9B8
